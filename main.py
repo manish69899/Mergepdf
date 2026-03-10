@@ -7,6 +7,11 @@ Supports Custom Output File Naming, Anti-Spam Logic & Dynamic Aesthetic Metadata
 import os
 import sys
 import asyncio
+try:
+    asyncio.get_running_loop()
+except RuntimeError:
+    asyncio.set_event_loop(asyncio.new_event_loop())
+    
 import time
 from typing import Optional, Dict
 
@@ -411,7 +416,7 @@ async def process_bulk_queue(client: Client, message: Message, user_id: int):
             clean_file(local_target_path)
             clean_file(local_output_path)
 
-            
+
     # ==========================================
     # 🎯 UX FIX: MESSAGE AT THE BOTTOM
     # ==========================================
